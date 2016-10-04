@@ -60,6 +60,7 @@
     <Compile Include="CalibrationParameter.cs" />
     <Compile Include="CalibrationStatus.cs" />
     <Compile Include="MathDecimal.cs" />
+    <Compile Include="Optimization.cs" />
     <Compile Include="Preferences.cs" />
     <Compile Include="Measurement.cs" />
     <Compile Include="Sensor.cs" />
