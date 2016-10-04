@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BGDrilling
 {
-    class lqlql { }
+    
 
     static class Optimization
     {
