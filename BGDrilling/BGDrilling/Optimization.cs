@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BGDrilling
 {
-  
+    class lqlql { }
+
     static class Optimization
     {
         public static decimal[] GaussNewton (Func<decimal[], decimal[][]> J, Func<decimal[], decimal[]> r, decimal[] p0)
