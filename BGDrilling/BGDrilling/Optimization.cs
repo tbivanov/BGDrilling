@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace BGDrilling
 {
-    class Gnezdo{}
-
+  
     static class Optimization
     {
-        lqlql
         public static decimal[] GaussNewton (Func<decimal[], decimal[][]> J, Func<decimal[], decimal[]> r, decimal[] p0)
         {
             decimal[] p = p0;

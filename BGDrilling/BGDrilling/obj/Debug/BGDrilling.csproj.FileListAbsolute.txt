@@ -52,3 +52,6 @@ C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.csproj.GenerateResource.Cache
 C:\Users\Gali\BGDrilling-Local\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
 C:\Users\Gali\BGDrilling-Local\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
 C:\Users\Gali\BGDrilling-Local\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
