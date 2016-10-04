@@ -8,13 +8,21 @@ namespace BGDrilling
 {
     abstract class Sensor
     {
-        private decimal[,] M = new decimal[3, 3], b = new decimal [3,1];
-        public Sensor()
+        public List<Measurement> data { get; set; }
+        public CalibrationParameter pars { get; set; }
+        public Sensor():this(new List<Measurement>())
         {
-
+          
+        }
+        public Sensor(List<Measurement> data, CalibrationParameter pars = null)
+        {
+            this.data = data;
+            this.pars = pars;
         }
         public abstract void calibrate();
-        public abstract decimal tf();
-        public abstract decimal incl();
+        public virtual void compute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

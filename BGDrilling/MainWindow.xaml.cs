@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace BGDrilling
 {
@@ -91,12 +92,6 @@ namespace BGDrilling
                 textBoxOutput.Text = "Path to the output .csv file";
         }
 
-        private void buttonCalibrate_Click(object sender, RoutedEventArgs e)
-        {
-            labelResults.Content = "mxx=1.1, .....................";
-            labelResults.Visibility = System.Windows.Visibility.Visible;
-            buttonSave.Visibility = System.Windows.Visibility.Visible;
-        }
 
         private void buttonLoadOut_Click(object sender, RoutedEventArgs e)
         {
@@ -127,6 +122,64 @@ namespace BGDrilling
             }
         }
 
-      
+
+
+
+        private void buttonCalibrate_Click(object sender, RoutedEventArgs e)
+        {
+            //Load data from file and initialize the acc array
+            Sensor[] sensors;
+            String path = textBoxInput.Text;
+            try {
+                StreamReader sr = new StreamReader(path);            
+                labelResults.Content = "";
+                string line;
+                string[] lineDiv = new string[] { "" };
+                line = sr.ReadLine();
+                int N = Int32.Parse(line.Split(',')[0]);
+                int M = Int32.Parse(line.Split(',')[1]);
+                int L = Int32.Parse(line.Split(',')[2]);
+                sensors = new Sensor[N+M+L];
+                for (int i=0; i < N; i++)
+                {
+                    sensors[i] = new Accelerometer();
+                }
+                for (int i = N; i < N+M; i++)
+                {
+                    //CREATE GYROS
+                }
+                for (int i = N+M; i < N+M+L; i++)
+                {
+                    //CREATE MAGNETOMETERS
+                }
+                while ((line = sr.ReadLine()) != null)
+                {
+                    lineDiv = line.Split(',');
+                    for (int i = 0; i < N; i++)
+                    {
+                        Measurement meas = new Measurement
+                            (new decimal[] { Decimal.Parse(lineDiv[5+i*3]), Decimal.Parse(lineDiv[6 + i * 3]), Decimal.Parse(lineDiv[7 + i * 3]) },
+                            Decimal.Parse(lineDiv[2]), Decimal.Parse(lineDiv[4]), Decimal.Parse(lineDiv[3]));
+                        sensors[i].data.Add(meas);
+                    }
+                }
+                MessageBox.Show(sensors[0].data[3].data[0].ToString()+" "+ sensors[1].data[3].data[0].ToString() + " "+ sensors[2].data[3].data[0].ToString() + " ");
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Invalid path to the input file.\n" + exc.ToString());
+            }
+
+            //TODO: Foreach i in sensors, compute calibration parameters and save them in the respective fields of the accelerometer objects
+
+            //TODO: Save in archive
+            
+            //TODO: Print results
+            labelResults.Visibility = Visibility.Visible;
+            buttonSave.Visibility = Visibility.Visible;
+
+        }
+
+
     }
 }
