@@ -55,3 +55,8 @@ C:\Users\Gali\BGDrilling-Local\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
 C:\BGDrillingLOCAL\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
 C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
 C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.csprojResolveAssemblyReference.cache
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\MainWindow.g.cs
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\App.g.cs
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.cache
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.lref
