@@ -163,17 +163,20 @@ namespace BGDrilling
                         sensors[i].data.Add(meas);
                     }
                 }
-                MessageBox.Show(sensors[0].data[3].data[0].ToString()+" "+ sensors[1].data[3].data[0].ToString() + " "+ sensors[2].data[3].data[0].ToString() + " ");
+                //MessageBox.Show(sensors[0].data[3].data[0].ToString()+" "+ sensors[1].data[3].data[0].ToString() + " "+ sensors[2].data[3].data[0].ToString() + " ");
+           
+
+            //TODO: Foreach i in sensors, compute calibration parameters and save them in the respective fields of the accelerometer objects
+                decimal[] pars = sensors[0].calibrate();
+                labelResults.Content = pars[0].ToString() + " " + pars[1].ToString() + " " + pars[2].ToString();
             }
             catch (Exception exc)
             {
                 MessageBox.Show("Invalid path to the input file.\n" + exc.ToString());
             }
 
-            //TODO: Foreach i in sensors, compute calibration parameters and save them in the respective fields of the accelerometer objects
-
             //TODO: Save in archive
-            
+
             //TODO: Print results
             labelResults.Visibility = Visibility.Visible;
             buttonSave.Visibility = Visibility.Visible;

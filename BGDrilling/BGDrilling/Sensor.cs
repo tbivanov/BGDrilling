@@ -19,7 +19,7 @@ namespace BGDrilling
             this.data = data;
             this.pars = pars;
         }
-        public abstract void calibrate();
+        public abstract decimal[] calibrate();
         public virtual void compute()
         {
             throw new NotImplementedException();

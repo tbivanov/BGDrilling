@@ -40,15 +40,14 @@ namespace BGDrilling
             return y;
         }
 
-        public static decimal[] Prod(decimal[][] A, decimal[] y)
+        public static decimal[] Prod(decimal[,] A, decimal[] y)
         {
             decimal[] res = y;
             for (int i = 0; i < A.Length; i++)
             {
-                decimal temp = 0;
+                res[i] = 0;
                 for (int j = 0; j < y.Length; j++)
-                    temp += A[i][j];
-
+                   res[i] += A[i,j]*y[j];
             }
             return res;
         }
@@ -67,5 +66,15 @@ namespace BGDrilling
         {
             return x * x;
         }
+
+        public static decimal[] Negative(decimal[] x)
+        {
+            for (int i = 0; i < x.Length; i++)
+            {
+                x[i]*=-1;
+            }
+            return x;
+        }
+
     }
 }

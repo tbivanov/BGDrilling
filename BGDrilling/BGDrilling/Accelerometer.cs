@@ -11,11 +11,34 @@ namespace BGDrilling
 
         public Accelerometer(List<Measurement> data, CalibrationParameter pars = null) : base(data,pars) { }
         public Accelerometer() : base() { }
-        public override void calibrate()
+        public override decimal[] calibrate()
         {
-            throw new NotImplementedException();
+            Func<decimal[], decimal[,]> J = new Func<decimal[], decimal[,]>(computeJ);
+            Func<decimal[], decimal[]> r = new Func<decimal[], decimal[]>(computeR);
+            return Optimization.GaussNewton(J, r, new decimal[3] { 0, 0, 0 });
         }
-
+        private decimal[] computeR(decimal[] p)
+        {
+            //TODO: Rewrite computeR!!!
+            decimal[] res = new decimal[11];
+            for(int i = 0; i<res.Length; i++)
+            {
+                res[i]=(decimal)(Math.Exp(((double)p[0]) * i * 0.1) + ((double)p[2]) * Math.Exp(((double)p[1]) * i * 0.1 - Math.Exp(i * 0.1) - Math.Sin(i * 0.1)));
+            }
+            return res; 
+        }
+        private decimal[,] computeJ(decimal[] p)
+        {
+            //TODO: Rewrite computeR!!!
+            decimal[,] res = new decimal[11,3];
+            for (int i = 0; i < res.Length; i++)
+            {
+                res[i,0] = (decimal)((double)p[0]*Math.Exp(((double)p[0]) * i * 0.1));
+                res[i,1] = (decimal)((double)(p[1]*p[2])*Math.Exp(((double)p[2]) * i * 0.1) );
+                res[i,2] = (decimal)(Math.Exp(((double)p[1]) * i * 0.1));
+            }
+            return res;
+        }
         public static decimal incl(Measurement meas)
         {
             decimal incl;

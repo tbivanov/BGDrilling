@@ -10,31 +10,32 @@ namespace BGDrilling
 
     static class Optimization
     {
-        public static decimal[] GaussNewton (Func<decimal[], decimal[][]> J, Func<decimal[], decimal[]> r, decimal[] p0)
+        public static decimal[] GaussNewton (Func<decimal[], decimal[,]> J, Func<decimal[], decimal[]> r, decimal[] p0)
         {
             decimal[] p = p0;
             decimal a = 1;
-            while(true)
+            int iter = 0;
+            while(iter < 100) //TODO: while error is large
             {
-                decimal[] pAdd = LinearLeastSquares(J, r);
-                while ( MathDecimal.Pow2(MathDecimal.Norm2(r(p))) - MathDecimal.Pow2(MathDecimal.Norm2(MathDecimal.Sum(p, MathDecimal.Prod(a, pAdd)))) <
-                    1M/2M*a*MathDecimal.Pow2(MathDecimal.Prod(J(p),p)))
+                decimal[] pAdd = LinearLeastSquares(J(p), MathDecimal.Negative(r(p)));
+                while ( MathDecimal.Pow2( MathDecimal.Norm2(r(p)) ) - MathDecimal.Pow2( MathDecimal.Norm2(MathDecimal.Sum(p, MathDecimal.Prod(a, pAdd))) ) <
+                    1M/2M*a*MathDecimal.Pow2( MathDecimal.Norm2(MathDecimal.Prod(J(p),p) )) )
                 {
                     a /= 2;
-
                 }
                 p = MathDecimal.Sum(p, MathDecimal.Prod(a, pAdd));
+                iter++;
                 
             }
-            throw new NotImplementedException();    
+            return p; 
         }
 
-        public static decimal[] LevenbergMarquardt(Func<decimal[], decimal[]> r, Func<decimal[], decimal[][]> J, decimal[] p0)
+        public static decimal[] LevenbergMarquardt(Func<decimal[], decimal[]> r, Func<decimal[], decimal[,]> J, decimal[] p0)
         {
             throw new NotImplementedException();
         }
 
-        public static decimal[] LinearLeastSquares(Func<decimal[], decimal[][]> J, Func<decimal[], decimal[]> r)
+        public static decimal[] LinearLeastSquares(decimal[,] A, decimal[] r)
         {
             throw new NotImplementedException();
         }

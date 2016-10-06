@@ -60,3 +60,9 @@ C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\MainWindow.g.cs
 C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\App.g.cs
 C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.cache
 C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.lref
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\bin\Debug\BGDrilling.pdb
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\MainWindow.baml
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.g.resources
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.Properties.Resources.resources
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.csproj.GenerateResource.Cache
