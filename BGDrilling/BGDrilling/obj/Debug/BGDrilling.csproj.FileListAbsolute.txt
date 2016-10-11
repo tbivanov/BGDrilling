@@ -1,0 +1,128 @@
+<<<<<<< HEAD:BGDrilling/obj/Debug/BGDrilling.csproj.FileListAbsolute.txt
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\bin\Debug\BGDrilling.pdb
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling.csprojResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\MainWindow.g.cs
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\App.g.cs
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.cache
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.lref
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\MainWindow.baml
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling.g.resources
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling.Properties.Resources.resources
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling.csproj.GenerateResource.Cache
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\Users\user\Source\Repos\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\Users\user\Source\Repos\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+C:\Users\user\Source\Repos\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\Users\user\Google Drive\Research\Gyros\Code\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\Users\user\Google Drive\Research\Gyros\Code\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+C:\Users\user\Google Drive\Research\Gyros\Code\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\Users\user\Desktop\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\Users\user\Desktop\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+C:\Users\user\Desktop\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling.exe
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\bin\Debug\BGDrilling.exe
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\bin\Debug\BGDrilling.pdb
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\MainWindow.g.cs
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\App.g.cs
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.cache
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.lref
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\MainWindow.baml
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling.g.resources
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling.Properties.Resources.resources
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling.csproj.GenerateResource.Cache
+C:\BGDrillingLOCAL\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.exe
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\BGDrillingLOCAL\BGDrilling\bin\Debug\BGDrilling.exe
+C:\BGDrillingLOCAL\BGDrilling\bin\Debug\BGDrilling.pdb
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.csprojResolveAssemblyReference.cache
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\MainWindow.g.cs
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\App.g.cs
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.cache
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.lref
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\MainWindow.baml
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.g.resources
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.Properties.Resources.resources
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.csproj.GenerateResource.Cache
+C:\Users\Gali\BGDrilling-Local\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\Users\Gali\BGDrilling-Local\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+C:\Users\Gali\BGDrilling-Local\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+=======
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\bin\Debug\BGDrilling.pdb
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling.csprojResolveAssemblyReference.cache
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\MainWindow.g.cs
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\App.g.cs
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.cache
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.lref
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\MainWindow.baml
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling.g.resources
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling.Properties.Resources.resources
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling.csproj.GenerateResource.Cache
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+c:\users\user\documents\visual studio 2015\Projects\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\Users\user\Source\Repos\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\Users\user\Source\Repos\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+C:\Users\user\Source\Repos\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\Users\user\Google Drive\Research\Gyros\Code\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\Users\user\Google Drive\Research\Gyros\Code\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+C:\Users\user\Google Drive\Research\Gyros\Code\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\Users\user\Desktop\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\Users\user\Desktop\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+C:\Users\user\Desktop\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling.exe
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\bin\Debug\BGDrilling.exe
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\bin\Debug\BGDrilling.pdb
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\MainWindow.g.cs
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\App.g.cs
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.cache
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.lref
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\MainWindow.baml
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling.g.resources
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling.Properties.Resources.resources
+C:\Users\user\Desktop\BGDrilling–LOCAL\BGDrilling\obj\Debug\BGDrilling.csproj.GenerateResource.Cache
+C:\BGDrillingLOCAL\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.exe
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\BGDrillingLOCAL\BGDrilling\bin\Debug\BGDrilling.exe
+C:\BGDrillingLOCAL\BGDrilling\bin\Debug\BGDrilling.pdb
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.csprojResolveAssemblyReference.cache
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\MainWindow.g.cs
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\App.g.cs
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.cache
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.lref
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\MainWindow.baml
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.g.resources
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.Properties.Resources.resources
+C:\BGDrillingLOCAL\BGDrilling\obj\Debug\BGDrilling.csproj.GenerateResource.Cache
+C:\Users\Gali\BGDrilling-Local\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\Users\Gali\BGDrilling-Local\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+C:\Users\Gali\BGDrilling-Local\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe.config
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.exe
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.pdb
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.csprojResolveAssemblyReference.cache
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\MainWindow.g.cs
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\App.g.cs
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.cache
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling_MarkupCompile.lref
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\bin\Debug\BGDrilling.exe
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\bin\Debug\BGDrilling.pdb
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\MainWindow.baml
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.g.resources
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.Properties.Resources.resources
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\BGDrilling.csproj.GenerateResource.Cache
+>>>>>>> 33e822abefe8ca6713c8879c9ebeec85cde546b4:BGDrilling/BGDrilling/obj/Debug/BGDrilling.csproj.FileListAbsolute.txt
