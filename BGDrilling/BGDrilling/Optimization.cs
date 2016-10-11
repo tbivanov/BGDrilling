@@ -37,7 +37,10 @@ namespace BGDrilling
 
         public static decimal[] LinearLeastSquares(decimal[,] A, decimal[] r)
         {
-            throw new NotImplementedException();
+            decimal[,] B = MathDecimal.Prod(MathDecimal.Transpose(A), A);
+            decimal[] y = MathDecimal.Prod(MathDecimal.Transpose(A), r);
+            decimal[] res = MathDecimal.Gauss(B, y);
+            return res;
         }
 
     }

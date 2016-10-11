@@ -42,8 +42,8 @@ namespace BGDrilling
 
         public static decimal[] Prod(decimal[,] A, decimal[] y)
         {
-            decimal[] res = y;
-            for (int i = 0; i < A.Length; i++)
+            decimal[] res = new decimal[A.GetLength(0)];
+            for (int i = 0; i < A.GetLength(0); i++)
             {
                 res[i] = 0;
                 for (int j = 0; j < y.Length; j++)
@@ -52,6 +52,34 @@ namespace BGDrilling
             return res;
         }
 
+        
+        public static decimal[,] Prod(decimal[,] A, decimal[,] B)
+        {
+            int rows = A.GetLength(0);
+            int cols = B.GetLength(1);
+            decimal[,] res = new decimal[rows,cols];
+            for(int i=0; i<rows; i++)
+                for(int j=0; j<cols; j++)
+                {
+                    decimal sum = 0;
+                    for (int k = 0; k < A.GetLength(1); k++)
+                        sum += A[i, k] * B[k, j];
+                    res[i, j] = sum;
+                }
+            
+            return res;
+        }
+
+        public static decimal[,] Transpose(decimal[,] A)
+        {
+            int rows = A.GetLength(0);
+            int cols = A.GetLength(1);
+            decimal[,] res = new decimal [cols, rows];
+            for (int i = 0; i < rows; i++)
+                for (int j = 0; j < cols; j++)
+                    res[j, i] = A[i, j];
+            return res;
+        }
         public static decimal Norm2 (decimal[] x)
         {
             decimal res = 0;
