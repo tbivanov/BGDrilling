@@ -39,7 +39,7 @@ namespace BGDrilling
         {
             decimal[,] B = MathDecimal.Prod(MathDecimal.Transpose(A), A);
             decimal[] y = MathDecimal.Prod(MathDecimal.Transpose(A), r);
-            decimal[] res = MathDecimal.Gauss(B, y);
+            decimal[] res = LinearAlgebra.Gauss(B, y);
             return res;
         }
 

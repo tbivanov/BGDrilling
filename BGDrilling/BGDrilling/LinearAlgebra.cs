@@ -10,10 +10,47 @@ namespace BGDrilling
     {
         public static decimal[] Gauss (decimal[,] A, decimal[] y)
         {
-            for (int i = 0; i < A.GetLength(0)-1; i++)
+            decimal l, sum, temp;
+            decimal[] res = new decimal[y.Length];
+            int n = A.GetLength(0);
+            for (int i = 0; i < n-1; i++)
             {
-                
+                int maxIndex = i;
+                //Find the index of the row with maximal element
+                for (int j = i + 1; j < n; j++)
+                    if (MathDecimal.Abs(A[j, i]) > MathDecimal.Abs(A[maxIndex, i]))
+                        maxIndex = j;
+                //Change the rows with indices i and maxIndex
+                for(int j=i; j<n; j++)
+                { 
+                    temp = A[i, j];
+                    A[i, j] = A[maxIndex, j];
+                    A[maxIndex, j] = temp;
+                }
+                temp = y[i];
+                y[i] = y[maxIndex];
+                y[maxIndex] = temp;
+                //Eliminate the elements under the main diagonal in the i-th column
+                for (int j = i + 1; j < n; j++)
+                {
+                    l = A[j, i] / A[i, i];
+                    A[j, i] = 0;
+                    for (int k = i + 1; k < n; k++)
+                        A[j, k] -= l * A[i, k];
+                    y[j] -= l * y[i];
+                }
             }
+            //Backward substitution
+            for (int i = n - 1; i >= 0; i--)
+            {
+                sum = 0;
+                for (int j = i + 1; j < n; j++)
+                {
+                    sum += A[i, j] * res[j];
+                }
+                res[i] = (y[i] - sum) / A[i, i];
+            }
+            return res;
 
         }
     }

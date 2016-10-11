@@ -104,5 +104,12 @@ namespace BGDrilling
             return x;
         }
 
+        public static decimal Abs(decimal x)
+        {
+            if (x < 0)
+                return -x;
+            return x;
+        }
+
     }
 }

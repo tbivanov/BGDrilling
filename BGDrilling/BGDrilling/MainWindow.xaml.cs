@@ -130,8 +130,9 @@ namespace BGDrilling
             //Load data from file and initialize the acc array
             Sensor[] sensors;
             String path = textBoxInput.Text;
-            try {
-                StreamReader sr = new StreamReader(path);            
+            try
+            {
+                StreamReader sr = new StreamReader(path);
                 labelResults.Content = "";
                 string line;
                 string[] lineDiv = new string[] { "" };
@@ -139,16 +140,16 @@ namespace BGDrilling
                 int N = Int32.Parse(line.Split(',')[0]);
                 int M = Int32.Parse(line.Split(',')[1]);
                 int L = Int32.Parse(line.Split(',')[2]);
-                sensors = new Sensor[N+M+L];
-                for (int i=0; i < N; i++)
+                sensors = new Sensor[N + M + L];
+                for (int i = 0; i < N; i++)
                 {
                     sensors[i] = new Accelerometer();
                 }
-                for (int i = N; i < N+M; i++)
+                for (int i = N; i < N + M; i++)
                 {
                     //CREATE GYROS
                 }
-                for (int i = N+M; i < N+M+L; i++)
+                for (int i = N + M; i < N + M + L; i++)
                 {
                     //CREATE MAGNETOMETERS
                 }
@@ -158,7 +159,7 @@ namespace BGDrilling
                     for (int i = 0; i < N; i++)
                     {
                         Measurement meas = new Measurement
-                            (new decimal[] { Decimal.Parse(lineDiv[5+i*3]), Decimal.Parse(lineDiv[6 + i * 3]), Decimal.Parse(lineDiv[7 + i * 3]) },
+                            (new decimal[] { Decimal.Parse(lineDiv[5 + i * 3]), Decimal.Parse(lineDiv[6 + i * 3]), Decimal.Parse(lineDiv[7 + i * 3]) },
                             Decimal.Parse(lineDiv[2]), Decimal.Parse(lineDiv[4]), Decimal.Parse(lineDiv[3]));
                         sensors[i].data.Add(meas);
                     }
@@ -167,21 +168,15 @@ namespace BGDrilling
 
 
                 //TODO: Foreach i in sensors, compute calibration parameters and save them in the respective fields of the accelerometer objects
-                try
+                decimal[] res = Optimization.LinearLeastSquares(new decimal[,] { { 1.1M,-1}, { 1,1}, {1,1} , {1,-1}, { 2,5} }, new decimal[]{ 7,1,-1,-1,0 });
+                for (int i=0; i< res.Length; i++)
                 {
-                    decimal[] res = Optimization.LinearLeastSquares(new decimal[,] { { 1, -1 }, { 1, 1 }, { 1,1}, { 1,-1} }, new decimal[] { 1, 1, -1, -1 });
-
-                    for (int i = 0; i < res.Length; i++)
-                    {
-                        labelResults.Content += res[i].ToString() + " ";
-                    }
-
+                    labelResults.Content += res[i].ToString() + " ";
                 }
-                catch (Exception exc) { MessageBox.Show("Problem in LinearLeastSquares.\n"+exc.Message); }
-                }
-                catch (Exception exc)
+            }
+            catch (Exception exc)
             {
-                MessageBox.Show("Invalid path to the input file.\n" );
+                MessageBox.Show("Invalid path to the input file.\n");
             }
 
             //TODO: Save in archive
