@@ -133,8 +133,9 @@ namespace BGDrilling
 
         public static decimal[] JacobiMethod(decimal[,] A, decimal accuracy)
         {
-           rows=A.getLength(0);
-           cols=A.GetLength(1);
+           throw new NotImplementedException();
+           int rows=A.GetLength(0);
+           int cols=A.GetLength(1);
 
            decimal sigma = 0;
            int i_max = 0, j_max = 1;
@@ -143,9 +144,9 @@ namespace BGDrilling
            while (sigma>accuracy)
            {
                /*find max off-diagonal element */
-               for(int i=0;i<rols;i++ )
+               for(int i=0;i<rows;i++ )
                    for(int j=i+1;j<cols;j++ )
-                       if (i != j && MathDecimal.Abs(A[i_max][j_max]) < MathDecimal.Abs(A[i][j]))
+                       if (i != j && MathDecimal.Abs(A[i_max,j_max]) < MathDecimal.Abs(A[i,j]))
                        {
                            i_max = i;
                            j_max = j;
