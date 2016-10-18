@@ -1,2 +1,3 @@
-BGDrilling\bin\*
-BGDrilling\obj\*
+BGDrilling/bin/*
+BGDrilling/obj/*
+*.ini
