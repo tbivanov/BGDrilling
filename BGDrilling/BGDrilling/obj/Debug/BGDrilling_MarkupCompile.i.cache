@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Gali\BGDrilling-Local\BGDrilling\BGDrilling\BGDrilling\obj\Debug\
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\obj\Debug\
 BGDrilling
 none
 false
 DEBUG;TRACE
-C:\Users\Gali\BGDrilling-Local\BGDrilling\BGDrilling\BGDrilling\App.xaml
+C:\BGDrillingLOCAL\BGDrilling\BGDrilling\App.xaml
 11151548125
 
-191993248880
+191176727054
 13738642453
 MainWindow.xaml;
 
-True
+False
 

@@ -15,7 +15,7 @@ namespace BGDrilling
         {
             Func<decimal[], decimal[,]> J = new Func<decimal[], decimal[,]>(computeJ);
             Func<decimal[], decimal[]> r = new Func<decimal[], decimal[]>(computeR);
-            return Optimization.GaussNewton(J, r, new decimal[3] { 0, 0, 0 });
+            return Optimization.GaussNewton(J, r, new decimal[2] { 0.1M, 0 });
         }
         private decimal[] computeR(decimal[] p)
         {
@@ -23,19 +23,18 @@ namespace BGDrilling
             decimal[] res = new decimal[11];
             for(int i = 0; i<res.Length; i++)
             {
-                res[i]=(decimal)(Math.Exp(((double)p[0]) * i * 0.1) + ((double)p[2]) * Math.Exp(((double)p[1]) * i * 0.1 - Math.Exp(i * 0.1) - Math.Sin(i * 0.1)));
+                res[i] = p[0]*(decimal)(Math.Exp(i * 0.1))+ p[1]*(decimal)(Math.Exp(2 * i * 0.1))- (decimal)(Math.Exp(i * 0.1));
             }
             return res; 
         }
         private decimal[,] computeJ(decimal[] p)
         {
             //TODO: Rewrite computeR!!!
-            decimal[,] res = new decimal[11,3];
-            for (int i = 0; i < res.Length; i++)
+            decimal[,] res = new decimal[11,2];
+            for (int i = 0; i < res.GetLength(0); i++)
             {
-                res[i,0] = (decimal)((double)p[0]*Math.Exp(((double)p[0]) * i * 0.1));
-                res[i,1] = (decimal)((double)(p[1]*p[2])*Math.Exp(((double)p[2]) * i * 0.1) );
-                res[i,2] = (decimal)(Math.Exp(((double)p[1]) * i * 0.1));
+                res[i,0] = (decimal)(Math.Exp( i * 0.1));
+                res[i,1] = (decimal)(Math.Exp(2* i * 0.1));
             }
             return res;
         }

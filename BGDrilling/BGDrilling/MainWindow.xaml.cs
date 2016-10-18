@@ -110,6 +110,27 @@ namespace BGDrilling
                 string filename = dlg.FileName;
                 textBoxOutput.Text = filename;
             }
+
+            //TESTS
+             Accelerometer acc = new Accelerometer();
+             decimal[] pars = acc.calibrate();
+           // decimal pars = a;
+            labelResults.Content = "";
+         //  for (int i = 0; i < pars.GetLength(0); i++)
+          // {
+           // for (int j = 0; j < pars.GetLength(1); j++)
+            // {
+             //     labelResults.Content += pars[i, j].ToString() + " ";
+             // }
+              //  labelResults.Content += "\n";
+         // }
+            for (int i = 0; i < pars.Length; i++)
+            {
+                labelResults.Content += pars[i].ToString()+"\n";
+            }
+            
+                
+            labelResults.Visibility = Visibility.Visible;
         }
 
         private void textBoxG_PreviewTextInput(object sender, TextCompositionEventArgs e)

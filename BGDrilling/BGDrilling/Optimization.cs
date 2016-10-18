@@ -18,14 +18,17 @@ namespace BGDrilling
             while(iter < 100) //TODO: while error is large
             {
                 decimal[] pAdd = LinearLeastSquares(J(p), MathDecimal.Negative(r(p)));
+                int innerIter = 0;
+                a = 1;
                 while ( MathDecimal.Pow2( MathDecimal.Norm2(r(p)) ) - MathDecimal.Pow2( MathDecimal.Norm2(MathDecimal.Sum(p, MathDecimal.Prod(a, pAdd))) ) <
-                    1M/2M*a*MathDecimal.Pow2( MathDecimal.Norm2(MathDecimal.Prod(J(p),p) )) )
+                    1M/2M*a*MathDecimal.Pow2( MathDecimal.Norm2(MathDecimal.Prod(J(p),p) )) && innerIter < 50)
                 {
                     a /= 2;
+                    innerIter++;
                 }
+                int s = 0;
                 p = MathDecimal.Sum(p, MathDecimal.Prod(a, pAdd));
                 iter++;
-                
             }
             return p; 
         }
