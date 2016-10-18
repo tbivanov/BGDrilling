@@ -28,16 +28,18 @@ namespace BGDrilling
 
         public static decimal[] Sum (decimal[] x, decimal[] y)
         {
+            decimal[] res = x;
             for (int i = 0; i < y.Length; i++)
-                x[i] += y[i];
-            return x;
+                res[i] += y[i];
+            return res;
         }
 
         public static decimal[] Prod(decimal a, decimal[] y)
         {
-            for (int i = 0; i < y.Length; i++)
-                y[i] *= a;
-            return y;
+            decimal[] res = y;
+            for (int i = 0; i < res.Length; i++)
+                res[i] *= a;
+            return res;
         }
 
         public static decimal[] Prod(decimal[,] A, decimal[] y)
@@ -97,11 +99,12 @@ namespace BGDrilling
 
         public static decimal[] Negative(decimal[] x)
         {
+            decimal[] res = x;
             for (int i = 0; i < x.Length; i++)
             {
-                x[i]*=-1;
+                res[i]*=-1;
             }
-            return x;
+            return res;
         }
 
         public static decimal Abs(decimal x)

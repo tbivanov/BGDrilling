@@ -15,26 +15,34 @@ namespace BGDrilling
         {
             Func<decimal[], decimal[,]> J = new Func<decimal[], decimal[,]>(computeJ);
             Func<decimal[], decimal[]> r = new Func<decimal[], decimal[]>(computeR);
-            return Optimization.GaussNewton(J, r, new decimal[2] { 0.1M, 0 });
+            return Optimization.GaussNewton(J, r, new decimal[12] {  1M, 0, 0 ,0,1M,0, 0,0,1M,0,0,0 });
         }
         private decimal[] computeR(decimal[] p)
         {
-            //TODO: Rewrite computeR!!!
-            decimal[] res = new decimal[11];
-            for(int i = 0; i<res.Length; i++)
+            int dataCount = data.Count;
+            decimal[] res = new decimal[2*dataCount];
+            for(int i = 0; i<dataCount; i++)
             {
-                res[i] = p[0]*(decimal)(Math.Exp(i * 0.1))+ p[1]*(decimal)(Math.Exp(2 * i * 0.1))- (decimal)(Math.Exp(i * 0.1));
+                res[2*i] = tf( new Measurement(computeCalibrated(p,i)) ) - (decimal)data[i].tf;
+                res[2 * i + 1] = incl(new Measurement(computeCalibrated(p, i))) - (decimal)data[i].incl;
             }
             return res; 
         }
         private decimal[,] computeJ(decimal[] p)
         {
-            //TODO: Rewrite computeR!!!
-            decimal[,] res = new decimal[11,2];
-            for (int i = 0; i < res.GetLength(0); i++)
+            int dataCount = data.Count;
+            decimal eps = 0.000001M;
+            decimal[,] res = new decimal[2*dataCount, 12];
+            for (int i = 0; i < dataCount; i++)
             {
-                res[i,0] = (decimal)(Math.Exp( i * 0.1));
-                res[i,1] = (decimal)(Math.Exp(2* i * 0.1));
+                decimal[] perturb = new decimal[12];
+                for (int j = 0; j < 12; j++)
+                {
+                    perturb = new decimal[12];
+                    perturb[j] = eps;
+                    res[2*i, j] = 1 / eps * (tf(new Measurement(computeCalibrated(MathDecimal.Sum(p, perturb), i))) - tf(new Measurement(computeCalibrated(p, i))));
+                    res[2*i+1, j] = 1 / eps * (incl(new Measurement(computeCalibrated(MathDecimal.Sum(p, perturb), i))) - incl(new Measurement(computeCalibrated(p, i))));
+                }
             }
             return res;
         }
@@ -67,5 +75,15 @@ namespace BGDrilling
                 tf = 360 + 360 / (2 * MathDecimal.PI) * MathDecimal.ATan2(meas.data[1], meas.data[0]);
             return tf;
         }
+
+        private decimal[] computeCalibrated(decimal[] p, int index)
+        {
+            decimal[] res = new decimal[3];
+            res[0] = p[0] * data[index].data[0] + p[1] * data[index].data[1] + p[2] * data[index].data[2] + p[9];
+            res[1] = p[3] * data[index].data[0] + p[4] * data[index].data[1] + p[5] * data[index].data[2] + p[10];
+            res[2] = p[6] * data[index].data[0] + p[7] * data[index].data[1] + p[8] * data[index].data[2] + p[11];
+            return res;
+        }
+
     }
 }

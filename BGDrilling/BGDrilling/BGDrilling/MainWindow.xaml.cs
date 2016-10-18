@@ -189,23 +189,30 @@ namespace BGDrilling
 
 
                 //TODO: Foreach i in sensors, compute calibration parameters and save them in the respective fields of the accelerometer objects
-<<<<<<< HEAD:BGDrilling/BGDrilling/BGDrilling/MainWindow.xaml.cs
-                decimal[] res = LinearAlgebra.BackwardSubstitutionLow(new decimal[,] { { 1, 0, 0 }, { -1, 2, 0 }, { 2, 2, 4} }, new decimal[]  { 3,4,5});
-
-                for (int i = 0; i < res.GetLength(0); i++)
+                decimal[] pars = sensors[0].calibrate();
+                // decimal pars = a;
+                labelResults.Content = "";
+                //  for (int i = 0; i < pars.GetLength(0); i++)
+                // {
+                // for (int j = 0; j < pars.GetLength(1); j++)
+                // {
+                //     labelResults.Content += pars[i, j].ToString() + " ";
+                // }
+                //  labelResults.Content += "\n";
+                // }
+                for (int i = 0; i < pars.Length; i++)
                 {
-                        labelResults.Content += res[i].ToString() + "\n";
-=======
-                decimal[] res = Optimization.LinearLeastSquares(new decimal[,] { { 1.1M,-1}, { 1,1}, {1,1} , {1,-1}, { 2,5} }, new decimal[]{ 7,1,-1,-1,0 });
-                for (int i=0; i< res.Length; i++)
-                {
-                    labelResults.Content += res[i].ToString() + " ";
->>>>>>> ed4b6848c94ee0b26a7cf90b7ef2f7b21f4945c8:BGDrilling/BGDrilling/MainWindow.xaml.cs
+                    labelResults.Content += pars[i].ToString() + "\n";
                 }
+
+
+                labelResults.Visibility = Visibility.Visible;
+
+
             }
             catch (Exception exc)
             {
-                MessageBox.Show("Invalid path to the input file.\n");
+                MessageBox.Show("Invalid path to the input file.\n"+exc.ToString());
             }
 
             //TODO: Save in archive
