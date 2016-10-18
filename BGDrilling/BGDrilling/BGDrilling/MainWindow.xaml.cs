@@ -168,11 +168,18 @@ namespace BGDrilling
 
 
                 //TODO: Foreach i in sensors, compute calibration parameters and save them in the respective fields of the accelerometer objects
+<<<<<<< HEAD:BGDrilling/BGDrilling/BGDrilling/MainWindow.xaml.cs
                 decimal[] res = LinearAlgebra.BackwardSubstitutionLow(new decimal[,] { { 1, 0, 0 }, { -1, 2, 0 }, { 2, 2, 4} }, new decimal[]  { 3,4,5});
 
                 for (int i = 0; i < res.GetLength(0); i++)
                 {
                         labelResults.Content += res[i].ToString() + "\n";
+=======
+                decimal[] res = Optimization.LinearLeastSquares(new decimal[,] { { 1.1M,-1}, { 1,1}, {1,1} , {1,-1}, { 2,5} }, new decimal[]{ 7,1,-1,-1,0 });
+                for (int i=0; i< res.Length; i++)
+                {
+                    labelResults.Content += res[i].ToString() + " ";
+>>>>>>> ed4b6848c94ee0b26a7cf90b7ef2f7b21f4945c8:BGDrilling/BGDrilling/MainWindow.xaml.cs
                 }
             }
             catch (Exception exc)
