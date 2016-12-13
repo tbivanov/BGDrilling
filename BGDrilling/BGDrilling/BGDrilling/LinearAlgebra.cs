@@ -154,5 +154,11 @@ namespace BGDrilling
            }
         }
 
+        public static decimal[] LUDecomposition(decimal[,] A, decimal[] y)
+        {
+
+            throw new NotImplementedException();
+        }
+
     }
 }
