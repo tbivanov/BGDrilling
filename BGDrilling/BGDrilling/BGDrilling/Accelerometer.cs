@@ -15,75 +15,97 @@ namespace BGDrilling
         {
             Func<decimal[], decimal[,]> J = new Func<decimal[], decimal[,]>(computeJ);
             Func<decimal[], decimal[]> r = new Func<decimal[], decimal[]>(computeR);
-            return Optimization.GaussNewton(J, r, new decimal[12] {  1M, 0, 0 ,0,1M,0, 0,0,1M,0,0,0 });
+            return  Optimization.GaussNewton(J, r, new decimal[12] { 1,1,1,1,1,1,1,1,1,1,1,1 });
         }
-        private decimal[] computeR(decimal[] p)
+        public override decimal[] computeR(decimal[] p)
         {
-            int dataCount = data.Count;
-            decimal[] res = new decimal[2*dataCount];
-            for(int i = 0; i<dataCount; i++)
+            //TODO: Rewrite computeR!!!
+            decimal[,] M = { { p[0], p[1], p[2] }, { p[3], p[4], p[5] }, { p[6], p[7], p[8] } };
+            decimal[] b = { p[9], p[10], p[11] };
+            decimal[] res = new decimal[22];/*rewrite length ...*/
+
+            //res=this.data[0].data;
+            for(int i = 0; i<res.GetLength(0)/2; i++)
             {
-                res[2*i] = tf( new Measurement(computeCalibrated(p,i)) ) - (decimal)data[i].tf;
-                res[2 * i + 1] = incl(new Measurement(computeCalibrated(p, i))) - (decimal)data[i].incl;
+                res[2 * i] =  tf(MathDecimal.Sum(MathDecimal.Prod(M, data[i].data), b));
+                res[2 * i + 1] = incl(MathDecimal.Sum(MathDecimal.Prod(M, data[i].data), b));
             }
             return res; 
         }
-        private decimal[,] computeJ(decimal[] p)
+
+        public override decimal[,] computeJ(decimal[] p)
         {
-            int dataCount = data.Count;
-            decimal eps = 0.000001M;
-            decimal[,] res = new decimal[2*dataCount, 12];
-            for (int i = 0; i < dataCount; i++)
+            //TODO: Rewrite computeR!!!
+            decimal[,] M = { { p[0], p[1], p[2] }, { p[3], p[4], p[5] }, { p[6], p[7], p[8] } };
+            decimal[] b = { p[9], p[10], p[11] };
+            decimal[,] res = new decimal[22,12];/*rewrite length ...*/
+            decimal B1, B2, B3, B, A;
+
+            for (int i = 0; i < res.GetLength(0)/2; i++)
             {
-                decimal[] perturb = new decimal[12];
-                for (int j = 0; j < 12; j++)
-                {
-                    perturb = new decimal[12];
-                    perturb[j] = eps;
-                    res[2*i, j] = 1 / eps * (tf(new Measurement(computeCalibrated(MathDecimal.Sum(p, perturb), i))) - tf(new Measurement(computeCalibrated(p, i))));
-                    res[2*i+1, j] = 1 / eps * (incl(new Measurement(computeCalibrated(MathDecimal.Sum(p, perturb), i))) - incl(new Measurement(computeCalibrated(p, i))));
-                }
+                B1 = p[0]* data[i].data[0]+p[1]* data[i].data[1]+p[2]* data[i].data[2] + p[9];
+                B2 = p[3] * data[i].data[0] + p[4] * data[i].data[1] + p[5] * data[i].data[2] + p[10];
+                B3 = p[6] * data[i].data[0] + p[7] * data[i].data[1] + p[8] * data[i].data[2] + p[11];
+                B = B1 * B1 + B2 * B2 + B3 * B3;
+                A = B1 * B1 + B2 * B2;
+
+                res[2 * i, 0] = (180 * data[i].data[0] * B2) / (MathDecimal.PI * A);
+                res[2 * i, 1] = (180 * data[i].data[1] * B2) / (MathDecimal.PI * A);
+                res[2 * i, 2] = (180 * data[i].data[2] * B2) / (MathDecimal.PI * A);
+                res[2 * i, 3] = -(180 * data[i].data[0] * B1) / (MathDecimal.PI * A);
+                res[2 * i, 4] = -(180 * data[i].data[1] * B1) / (MathDecimal.PI * A);
+                res[2 * i, 5] = -(180 * data[i].data[2] * B1) / (MathDecimal.PI * A);
+                res[2 * i, 6] = 0;
+                res[2 * i, 7] = 0;
+                res[2 * i, 8] = 0;
+                res[2 * i, 9] = (180 * B2) / (MathDecimal.PI * A);
+                res[2 * i, 10] = -(180 * B1) / (MathDecimal.PI * A);
+                res[2 * i, 11] = 0;
+
+                res[2 * i + 1, 0] = -(180 * data[i].data[0] * B1 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A));
+                res[2 * i + 1, 1] = -(180 * data[i].data[1] * B1 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A));
+                res[2 * i + 1, 2] = -(180 * data[i].data[2] * B1 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A));
+                res[2 * i + 1, 3] = -(180 * data[i].data[0] * B2 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A));
+                res[2 * i + 1, 4] = -(180 * data[i].data[1] * B2 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A));
+                res[2 * i + 1, 5] = -(180 * data[i].data[2] * B2 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A));
+                res[2 * i + 1, 6] = (180 * data[i].data[0] * MathDecimal.Sqrt(A) * B3) / (MathDecimal.PI * B);
+                res[2 * i + 1, 7] = (180 * data[i].data[1] * MathDecimal.Sqrt(A) * B3) / (MathDecimal.PI * B);
+                res[2 * i + 1, 8] = (180 * data[i].data[2] * MathDecimal.Sqrt(A) * B3) / (MathDecimal.PI * B);
+                res[2 * i + 1, 9]  = -(180 * B1 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A));
+                res[2 * i + 1, 10] = -(180 * B2 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A)); ;
+                res[2 * i+1, 11] = (180 * MathDecimal.Sqrt(A) * B3) / (MathDecimal.PI * B);
             }
+
             return res;
         }
-        public static decimal incl(Measurement meas)
+
+        public static decimal incl(decimal[] p)
         {
             decimal incl;
             if (90 - 360 / (2 * MathDecimal.PI) *
-                   MathDecimal.ACos(meas.data[2]
-                   / MathDecimal.Sqrt((meas.data[0] * meas.data[0] + meas.data[1] * meas.data[1] + meas.data[2] * meas.data[2]))) > 60)
+                   MathDecimal.ACos(p[2]/ MathDecimal.Norm2(p)) > 60)
             {
                 incl = 90 - 360 / (2 * MathDecimal.PI) *
-                    MathDecimal.ASin(MathDecimal.Sqrt((meas.data[0] * meas.data[0] + meas.data[1] * meas.data[1])
-                    / (meas.data[0] * meas.data[0] + meas.data[1] * meas.data[1] + meas.data[2] * meas.data[2])));
+                    MathDecimal.ASin(MathDecimal.Sqrt((p[0] * p[0] + p[1] * p[1])
+                    / MathDecimal.Norm2(p)));
             }
             else
             {
                 incl = 90 - 360 / (2 * MathDecimal.PI) *
-                   MathDecimal.ACos(meas.data[2]
-                   / MathDecimal.Sqrt((meas.data[0] * meas.data[0] + meas.data[1] * meas.data[1] + meas.data[2] * meas.data[2])));
+                   MathDecimal.ACos(p[2]
+                   / MathDecimal.Norm2(p));
             }
             return incl;
         }
         
-        public static decimal tf(Measurement meas)
+        public static decimal tf(decimal[] p)
         {
             decimal tf;
-            if (MathDecimal.ATan2(meas.data[1], meas.data[0]) > -0.1M)
-                tf = 360 / (2 * MathDecimal.PI) * MathDecimal.ATan2(meas.data[1], meas.data[0]);
+            if (MathDecimal.ATan2(p[1], p[0]) > -0.1M)
+                tf = 360 / (2 * MathDecimal.PI) * MathDecimal.ATan2(p[1], p[0]);
             else
-                tf = 360 + 360 / (2 * MathDecimal.PI) * MathDecimal.ATan2(meas.data[1], meas.data[0]);
+                tf = 360 + 360 / (2 * MathDecimal.PI) * MathDecimal.ATan2(p[1], p[0]);
             return tf;
         }
-
-        private decimal[] computeCalibrated(decimal[] p, int index)
-        {
-            decimal[] res = new decimal[3];
-            res[0] = p[0] * data[index].data[0] + p[1] * data[index].data[1] + p[2] * data[index].data[2] + p[9];
-            res[1] = p[3] * data[index].data[0] + p[4] * data[index].data[1] + p[5] * data[index].data[2] + p[10];
-            res[2] = p[6] * data[index].data[0] + p[7] * data[index].data[1] + p[8] * data[index].data[2] + p[11];
-            return res;
-        }
-
     }
 }

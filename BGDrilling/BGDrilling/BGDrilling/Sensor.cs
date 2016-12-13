@@ -20,6 +20,9 @@ namespace BGDrilling
             this.pars = pars;
         }
         public abstract decimal[] calibrate();
+        public abstract decimal[,] computeJ(decimal[] p);
+        public abstract decimal[] computeR(decimal[] p);
+
         public virtual void compute()
         {
             throw new NotImplementedException();
