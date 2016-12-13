@@ -1,0 +1,6 @@
+BGDrilling/bin/*
+BGDrilling/obj/*
+*.ini
+.git/*
+.vs/*
+

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="BGDrilling.Accelerometer">
+    <Position X="0.5" Y="3.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAABAQAAAAAAAAAAAAAAAAAAAAIAAAAAEAA=</HashCode>
+      <FileName>Accelerometer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGDrilling.CalibrationParameter">
+    <Position X="3.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEADAAAAAAAAAAAAAADAAAAIAEAAM=</HashCode>
+      <FileName>CalibrationParameter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGDrilling.LinearAlgebra">
+    <Position X="6" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAgAAgAAAABA=</HashCode>
+      <FileName>LinearAlgebra.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGDrilling.MathDecimal">
+    <Position X="8.75" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAIAEAAABACgAAAAAAAAAQAAAAAEAAAAgiAAAQ=</HashCode>
+      <FileName>MathDecimal.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGDrilling.Measurement">
+    <Position X="3.25" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAABAAAAAAAAAAAAAAAAAACAAAIQAAAAAAA=</HashCode>
+      <FileName>Measurement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGDrilling.Optimization">
+    <Position X="6" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAAAAAAAAAAAAAgAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Optimization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGDrilling.Preferences">
+    <Position X="8.75" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Preferences.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BGDrilling.Sensor">
+    <Position X="0.5" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAEAAAAAAAAAAAAAAAAAAAQAABAAAA=</HashCode>
+      <FileName>Sensor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="BGDrilling.CalibrationApproach">
+    <Position X="6" Y="5.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CalibrationApproach.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="BGDrilling.CalibrationStatus">
+    <Position X="6" Y="6.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAQAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CalibrationStatus.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
