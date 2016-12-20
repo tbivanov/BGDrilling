@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace BGDrilling
 {
@@ -172,71 +174,12 @@ namespace BGDrilling
 
 
                 //TODO: Foreach i in sensors, compute calibration parameters and save them in the respective fields of the accelerometer objects
-                //decimal[] res = LinearAlgebra.BackwardSubstitutionLow(new decimal[,] { { 65, 0, 0, 0, 0 }, { 10, 2, 0, 0, 0 }, { 3, 1, 1, 0, 0 }, { 23, 1, 1, 20, 0 }, { 23, 4, 10, 20, 40 } }, new decimal[] { 1, 2, 3, 4, 5 });
-                 
-                decimal a = 1;
-                decimal[] p = { 1, 0.5M, 7M };
-                decimal[,] J = { { 1, 0.5M, 7M, 4 }, { 1, 0.5M, 27M, 4 }, { 1, 0.5M, 7M, 5 } };
-                decimal[] pAdd = { 0.1M, 0.5M, 0.7M };
-
-                //decimal[] res =Optimization.GaussNewton(pAdd);
-
-                //Measurement[] meas1 = { new Measurement(new decimal[] { 1, 2, 3 }, 0, 1, 2), new Measurement(new decimal[] { 1, 2, 3 }, 0, 1, 2) };
-                //Accelerometer acc1 = new BGDrilling.Accelerometer();
-                //decimal[] res = sensors[0].calibrate();//sensors[0].computeJ(new decimal[] {1,2,3,4,5,6,6,7,5,6,5,6});//test.calibrate();
-                decimal[,] res = sensors[0].computeJ(new decimal[12] { 1.1010140221357660322585672123M, 1.1010140226772653231732328849M,
-1.1010140226577987745426498384M,
-71.010269789341302933970247202M,
-71.010269804278793653568671568M,
-71.010269803736848793938931208M,
-0.9999999999999996303434170532M,
-1.0000000000000000112202919374M,
-0.9999999999999999977944535153M,
-0.9290575790068339843251263346M,
-66.856235107462547424100808752M,
-0.1077311408480793898213008661M});
-
-                decimal[,] B = MathDecimal.Prod(MathDecimal.Transpose(res), res);
-                String [] lines=new string[res.GetLength(0)];
-                for (int i = 0; i < B.GetLength(0); i++)
+           
+                for (int i = 0; i < sensors.GetLength(0); i++)
                 {
-                    lines[i] += "{";
-                    for (int j = 0; j < B.GetLength(1); j++)
-                    {
-                        labelResults.Content += res[i, j].ToString() + "\n";
-                        lines[i] += res[i, j].ToString() + ", ";
-                    }
-                    //labelResults.Content += "\n";
-                    lines[i] += "},";
-                }
-                    //bool res1 = MathDecimal.Pow2(MathDecimal.Norm2(pAdd)) - MathDecimal.Pow2(MathDecimal.Norm2(MathDecimal.Sum(p, MathDecimal.Prod(a, pAdd)))) <
-                    //       1M / 2M * a * MathDecimal.Pow2(MathDecimal.Norm2(MathDecimal.Prod(J, p))) && a >= 0.00001M;
-
-                    
-
+                    sensors[i].calibrate();//calibrate data and save them in the respective fields
                 
-
-                //labelResults.Content += res.ToString() + "\n";
-                //System.Console.WriteLine(lines);
-
-                /*for (int i = 0; i < res.GetLength(0); i++)
-                {
-                    labelResults.Content += res[i].ToString() + " ";
-                    //lines[i] += res[i].ToString() + " ";
-                    //for (int j=0; j<res.GetLength(1); j++)
-                    {
-                    //    labelResults.Content += res[i, j].ToString()+" ";
-                    //    
-                    }
-
-                    //labelResults.Content += "\n";
-                    //
-                    /*for (int i = 0; i < res.Length; i++)
-                    {
-                        labelResults.Content += res[i].ToString() + " ";
-                    }
-                }*/
-            System.IO.File.WriteAllLines(@"C:\Users\Gali\Desktop\writeLines.txt", lines);
+                }
 
             }
             catch (Exception exc)

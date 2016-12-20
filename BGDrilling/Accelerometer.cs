@@ -15,35 +15,48 @@ namespace BGDrilling
         {
             Func<decimal[], decimal[,]> J = new Func<decimal[], decimal[,]>(computeJ);
             Func<decimal[], decimal[]> r = new Func<decimal[], decimal[]>(computeR);
-            return  Optimization.GaussNewton(J, r, new decimal[12] { 1,1,1,1,1,1,1,1,1,1,1,1 });
+            decimal[] p = Optimization.GaussNewton(J, r, new decimal[12] { 1,0,0,0,1,0,0,0,1,0,0,0 });
+            
+            //scale with respect to the gravitational acceleration
+           /* decimal[] rGravity = new decimal[data.Count];
+            for (int i = 0; i < rGravity.GetLength(0); i++)
+                rGravity[i] = Preferences.G;
+            decimal[,] M = new decimal[,] { { p[0], p[1], p[2] }, { p[3], p[4], p[5] }, { p[6], p[7], p[8] } };
+            decimal[] b = new decimal[] { p[9], p[10], p[11] };
+            decimal[,] JGravity = new decimal[data.Count,1];
+            for (int i = 0; i < rGravity.GetLength(0); i++)
+                JGravity[i,1] = MathDecimal.Norm2(MathDecimal.Sum(MathDecimal.Prod(M, data[i].data),b));
+            decimal Q = Optimization.LinearLeastSquares(JGravity, rGravity)[1];
+            p = MathDecimal.Prod(Q, p);*/
+            return p;
         }
         public override decimal[] computeR(decimal[] p)
         {
             //TODO: Rewrite computeR!!!
             decimal[,] M = { { p[0], p[1], p[2] }, { p[3], p[4], p[5] }, { p[6], p[7], p[8] } };
             decimal[] b = { p[9], p[10], p[11] };
-            decimal[] res = new decimal[22];/*rewrite length ...*/
+            decimal[] res = new decimal[data.Count*2];/*rewrite length ...*/
 
             //res=this.data[0].data;
             for(int i = 0; i<res.GetLength(0)/2; i++)
             {
-                res[2 * i] =  tf(MathDecimal.Sum(MathDecimal.Prod(M, data[i].data), b));
-                res[2 * i + 1] = incl(MathDecimal.Sum(MathDecimal.Prod(M, data[i].data), b));
+                res[2 * i] =  tf(MathDecimal.Sum(MathDecimal.Prod(M, data[i].data), b))-(decimal)data[i].tf;
+                res[2 * i + 1] = incl(MathDecimal.Sum(MathDecimal.Prod(M, data[i].data), b))-(decimal)data[i].incl;
             }
             return res; 
         }
 
         public override decimal[,] computeJ(decimal[] p)
         {
-            //TODO: Rewrite computeR!!!
-            decimal[,] M = { { p[0], p[1], p[2] }, { p[3], p[4], p[5] }, { p[6], p[7], p[8] } };
-            decimal[] b = { p[9], p[10], p[11] };
-            decimal[,] res = new decimal[22,12];/*rewrite length ...*/
+            //TODO: Rewrite computeJ!!!
+           // decimal[,] M = { { p[0], p[1], p[2] }, { p[3], p[4], p[5] }, { p[6], p[7], p[8] } };
+            //decimal[] b = { p[9], p[10], p[11] };
+            decimal[,] res = new decimal[data.Count*2,12];/*rewrite length ...*/
             decimal B1, B2, B3, B, A;
 
-            for (int i = 0; i < res.GetLength(0)/2; i++)
+            for (int i = 0; i < data.Count; i++)
             {
-                B1 = p[0]* data[i].data[0]+p[1]* data[i].data[1]+p[2]* data[i].data[2] + p[9];
+                B1 = p[0] * data[i].data[0]+p[1]* data[i].data[1]+p[2]* data[i].data[2] + p[9];
                 B2 = p[3] * data[i].data[0] + p[4] * data[i].data[1] + p[5] * data[i].data[2] + p[10];
                 B3 = p[6] * data[i].data[0] + p[7] * data[i].data[1] + p[8] * data[i].data[2] + p[11];
                 B = B1 * B1 + B2 * B2 + B3 * B3;
@@ -68,12 +81,12 @@ namespace BGDrilling
                 res[2 * i + 1, 3] = -(180 * data[i].data[0] * B2 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A));
                 res[2 * i + 1, 4] = -(180 * data[i].data[1] * B2 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A));
                 res[2 * i + 1, 5] = -(180 * data[i].data[2] * B2 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A));
-                res[2 * i + 1, 6] = (180 * data[i].data[0] * MathDecimal.Sqrt(A) * B3) / (MathDecimal.PI * B);
-                res[2 * i + 1, 7] = (180 * data[i].data[1] * MathDecimal.Sqrt(A) * B3) / (MathDecimal.PI * B);
-                res[2 * i + 1, 8] = (180 * data[i].data[2] * MathDecimal.Sqrt(A) * B3) / (MathDecimal.PI * B);
+                res[2 * i + 1, 6] = (180 * data[i].data[0] * MathDecimal.Sqrt(A)) / (MathDecimal.PI * B);
+                res[2 * i + 1, 7] = (180 * data[i].data[1] * MathDecimal.Sqrt(A)) / (MathDecimal.PI * B);
+                res[2 * i + 1, 8] = (180 * data[i].data[2] * MathDecimal.Sqrt(A)) / (MathDecimal.PI * B);
                 res[2 * i + 1, 9]  = -(180 * B1 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A));
                 res[2 * i + 1, 10] = -(180 * B2 * B3) / (MathDecimal.PI * B * MathDecimal.Sqrt(A)); ;
-                res[2 * i+1, 11] = (180 * MathDecimal.Sqrt(A) * B3) / (MathDecimal.PI * B);
+                res[2 * i + 1, 11] = (180 * MathDecimal.Sqrt(A)) / (MathDecimal.PI * B);
             }
 
             return res;
@@ -82,7 +95,7 @@ namespace BGDrilling
         public static decimal incl(decimal[] p)
         {
             decimal incl;
-            if (90 - 360 / (2 * MathDecimal.PI) *
+            /*if (90 - 360 / (2 * MathDecimal.PI) *
                    MathDecimal.ACos(p[2]/ MathDecimal.Norm2(p)) > 60)
             {
                 incl = 90 - 360 / (2 * MathDecimal.PI) *
@@ -94,7 +107,14 @@ namespace BGDrilling
                 incl = 90 - 360 / (2 * MathDecimal.PI) *
                    MathDecimal.ACos(p[2]
                    / MathDecimal.Norm2(p));
-            }
+            }*/
+            if (p[2] == 0)
+                incl = 0;
+            else
+                incl = 90 - 360 / (2 * MathDecimal.PI) *
+                   MathDecimal.ACos(p[2]
+                   / MathDecimal.Norm2(p));
+
             return incl;
         }
         

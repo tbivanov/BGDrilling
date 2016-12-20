@@ -9,5 +9,6 @@ namespace BGDrilling
     public static class Preferences
     {
         public static CalibrationApproach calibrationApproach = CalibrationApproach.Linear;
+        public const decimal G = 9.8061M;
     }
 }
