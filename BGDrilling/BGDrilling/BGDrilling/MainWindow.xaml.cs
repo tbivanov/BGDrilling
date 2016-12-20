@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using MathNet.Numerics.LinearAlgebra;
+using MathNet.Numerics.LinearAlgebra.Double;
 
 namespace BGDrilling
 {
@@ -176,17 +178,7 @@ namespace BGDrilling
                  
              
                 decimal[] p = { 1, 0.5M, 7M };
-                decimal[,] A = { { 21, 10, 40 }, { 50, 31, 60}, { 70, 80, 31 }, {90,130,5460} };
-                List<decimal[,]> LU = LinearAlgebra.LUDecomposition(A);
-                decimal[,] J1 = MathDecimal.Prod(MathDecimal.Prod(LU[2], A), LU[3]);
-                decimal[,] J2 = MathDecimal.Prod(LU[0], LU[1]);
-
-                for (int i = 0; i < LU[1].GetLength(0); i++)
-                {
-                    for (int j = 0; j < LU[1].GetLength(1); j++)
-                        labelResults.Content += LU[1][i, j].ToString() + " ";
-                    labelResults.Content += "\n";
-                }
+                decimal[,] A = { { 1, 1}, { 1,2}, { 1, 3 }, { 1, 4 } };
 
                 //decimal[] pAdd = { 0.1M, 0.5M, 0.7M };
 
@@ -194,38 +186,56 @@ namespace BGDrilling
 
                 //Measurement mеas1 = new Measurement(new decimal[] { 1, 2, 3 }, 0);
                 //Accelerometer acc1 = new BGDrilling.Accelerometer();
-                //decimal[] res = sensors[0].calibrate();//sensors[0].computeJ(new decimal[] {1,2,3,4,5,6,6,7,5,6,5,6});//test.calibrate();
-                /*decimal[,] res = sensors[0].computeJ(new decimal[12] { 1.1010140221357660322585672123M, 1.1010140226772653231732328849M,
-1.1010140226577987745426498384M,
-71.010269789341302933970247202M,
-71.010269804278793653568671568M,
-71.010269803736848793938931208M,
-0.9999999999999996303434170532M,
-1.0000000000000000112202919374M,
-0.9999999999999999977944535153M,
-0.9290575790068339843251263346M,
-66.856235107462547424100808752M,
-0.1077311408480793898213008661M});*/
+                 decimal[] res = sensors[0].calibrate(); //Optimization.LinearLeastSquares(A, new decimal[4] { 6, 5, 7, 10 });//
 
-                /*decimal[,] B = MathDecimal.Prod(MathDecimal.Transpose(res), res);
-                String [] lines=new string[res.GetLength(0)];
-                for (int i = 0; i < B.GetLength(0); i++)
+
+                // for (int j = 0; j < res.GetLength(0); j++)
+                //  labelResults.Content += res[j].ToString() + "\n";
+                // decimal[,] res= sensors[0].computeJ(new decimal[] { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 });//test.calibrate();
+                // decimal[] res = sensors[0].computeR(new decimal[12] { 1, 0, 0, 0,  1, 0, 0, 0,  1, 0, 0, 0 });
+                /*decimal[,] J = sensors[0].computeJ(new decimal[12] { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 });
+                double[,] JDouble = new double[J.GetLength(0), J.GetLength(1)];
+                for (int i = 0; i < J.GetLength(0); i++)
+                    for (int j = 0; j < J.GetLength(1); j++)
+                        JDouble[i, j] = (double)J[i, j];
+                decimal[] r = sensors[0].computeR(new decimal[12] { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 });
+                decimal[] res =Optimization.LinearLeastSquares(sensors[0].computeJ(new decimal[12] { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 }),
+               MathDecimal.Negative(sensors[0].computeR(new decimal[12] { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 })), "SVD");*/
+                /*Matrix<double> JMatrix = DenseMatrix.OfArray(JDouble);
+                MathNet.Numerics.LinearAlgebra.Factorization.Svd<double> Jsvd = JMatrix.Svd();
+                double[,] res = Jsvd.VT.ToArray();*/
+                // decimal[] res = LinearAlgebra.Gauss(MathDecimal.Prod(MathDecimal.Transpose(J),J),
+                //MathDecimal.Negative(MathDecimal.Prod(MathDecimal.Transpose(J), r)));
+                String[] lines = new string[res.GetLength(0)];
+                for (int i = 0; i < res.GetLength(0); i++)
+                {
+                    labelResults.Content += res[i].ToString() + "\n";
+                    lines[i] += res[i].ToString() + ", ";
+                    //lines[i] += res[i].ToString();
+                    labelResults.Content += "\n";
+                    lines[i] += "},";
+                }
+                //decimal res = Accelerometer.incl(new decimal[] { 10, 10, 0.5M });
+                //labelResults.Content += res.ToString();
+              /* String [] lines=new string[res.GetLength(0)];
+               for (int i = 0; i < res.GetLength(0); i++)
                 {
                     lines[i] += "{";
-                    for (int j = 0; j < B.GetLength(1); j++)
+                    //lines[i] += res[i].ToString();
+                    for (int j = 0; j < res.GetLength(1); j++)
                     {
                         labelResults.Content += res[i, j].ToString() + "\n";
                         lines[i] += res[i, j].ToString() + ", ";
                     }
-                    //labelResults.Content += "\n";
+                    labelResults.Content += "\n";
                     lines[i] += "},";
                 }*/
-                    //bool res1 = MathDecimal.Pow2(MathDecimal.Norm2(pAdd)) - MathDecimal.Pow2(MathDecimal.Norm2(MathDecimal.Sum(p, MathDecimal.Prod(a, pAdd)))) <
-                    //       1M / 2M * a * MathDecimal.Pow2(MathDecimal.Norm2(MathDecimal.Prod(J, p))) && a >= 0.00001M;
+                //bool res1 = MathDecimal.Pow2(MathDecimal.Norm2(pAdd)) - MathDecimal.Pow2(MathDecimal.Norm2(MathDecimal.Sum(p, MathDecimal.Prod(a, pAdd)))) <
+                //       1M / 2M * a * MathDecimal.Pow2(MathDecimal.Norm2(MathDecimal.Prod(J, p))) && a >= 0.00001M;
 
-                    
 
-                
+
+
 
                 //labelResults.Content += res.ToString() + "\n";
                 //System.Console.WriteLine(lines);
@@ -247,7 +257,7 @@ namespace BGDrilling
                         labelResults.Content += res[i].ToString() + " ";
                     }
                 }*/
-            //System.IO.File.WriteAllLines(@"C:\Users\Gali\Desktop\writeLines.txt", lines);
+               System.IO.File.WriteAllLines(@"C:\Users\Tihomir\Desktop\writeLines.txt", lines);
 
             }
             catch (Exception exc)
