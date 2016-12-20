@@ -13,7 +13,7 @@ namespace BGDrilling
         public decimal? tf { get; set; }
         public decimal? incl { get; set; }
         public CalibrationStatus status { get; set; }
-        public Measurement (decimal[] data, decimal temp, decimal? tf = null, decimal? incl = null, CalibrationStatus status = CalibrationStatus.ToCalibrate)
+        public Measurement (decimal[] data, decimal temp = 0, decimal? tf = null, decimal? incl = null, CalibrationStatus status = CalibrationStatus.ToCalibrate)
         {
             this.data = data;
             this.temp = temp;
