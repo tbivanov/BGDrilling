@@ -15,19 +15,39 @@ namespace BGDrilling
         {
             Func<decimal[], decimal[,]> J = new Func<decimal[], decimal[,]>(computeJ);
             Func<decimal[], decimal[]> r = new Func<decimal[], decimal[]>(computeR);
-            decimal[] p = Optimization.GaussNewton(J, r, new decimal[12] { 1,0,0,0,1,0,0,0,1,0,0,0 });
-            
+            decimal[] p = { 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 };
+            decimal[,] M, Mfinal=new decimal[3, 3] { { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } };
+            decimal[] b, bFinal=new decimal[3] { 0, 0, 0 };
+
+            for (int j=0; j<10; j++)
+            {
+
+                p=Optimization.GaussNewton(J, r, p);
+                M = new decimal[,] { { p[0], p[1], p[2] }, { p[3], p[4], p[5] }, { p[6], p[7], p[8] } };
+                b = new decimal[] { p[9], p[10], p[11] };
+
+                Mfinal = MathDecimal.Prod(Mfinal, M);
+                bFinal = MathDecimal.Sum(MathDecimal.Prod(M, bFinal), b);
+
+
+                for (int i = 0; i < data.Count; i++)
+                    data[i].data = MathDecimal.Sum(b,MathDecimal.Prod(M, data[i].data));
+
+
             //scale with respect to the gravitational acceleration
-           /* decimal[] rGravity = new decimal[data.Count];
-            for (int i = 0; i < rGravity.GetLength(0); i++)
-                rGravity[i] = Preferences.G;
-            decimal[,] M = new decimal[,] { { p[0], p[1], p[2] }, { p[3], p[4], p[5] }, { p[6], p[7], p[8] } };
-            decimal[] b = new decimal[] { p[9], p[10], p[11] };
-            decimal[,] JGravity = new decimal[data.Count,1];
-            for (int i = 0; i < rGravity.GetLength(0); i++)
-                JGravity[i,1] = MathDecimal.Norm2(MathDecimal.Sum(MathDecimal.Prod(M, data[i].data),b));
-            decimal Q = Optimization.LinearLeastSquares(JGravity, rGravity)[1];
-            p = MathDecimal.Prod(Q, p);*/
+            /*decimal[] rGravity = new decimal[data.Count];
+             for (int i = 0; i < rGravity.GetLength(0); i++)
+                 rGravity[i] = Preferences.G;
+             decimal[,] M = new decimal[,] { { p[0], p[1], p[2] }, { p[3], p[4], p[5] }, { p[6], p[7], p[8] } };
+             decimal[] b = new decimal[] { p[9], p[10], p[11] };
+             decimal[,] JGravity = new decimal[data.Count,1];
+             for (int i = 0; i < rGravity.GetLength(0); i++)
+                 JGravity[i,1] = MathDecimal.Norm2(MathDecimal.Sum(MathDecimal.Prod(M, data[i].data),b));
+             decimal Q = Optimization.LinearLeastSquares(JGravity, rGravity)[1];
+             p = MathDecimal.Prod(Q, p);*/
+            }
+
+            pars = new CalibrationParameter(Mfinal[0,0], Mfinal[0, 1], Mfinal[0, 2], Mfinal[1, 0], Mfinal[1, 1], Mfinal[1, 2], Mfinal[2, 0], Mfinal[2, 1], Mfinal[2, 2], bFinal[0], bFinal[1], bFinal[2]);
             return p;
         }
         public override decimal[] computeR(decimal[] p)

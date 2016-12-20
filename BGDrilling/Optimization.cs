@@ -35,8 +35,7 @@ namespace BGDrilling
                     a /= 2;
                 }
 
-                p = MathDecimal.Sum(p, MathDecimal.Prod(a, pAdd));
-                
+                p = MathDecimal.Sum(p, MathDecimal.Prod(a, pAdd)); 
                 iter++;
             }
 

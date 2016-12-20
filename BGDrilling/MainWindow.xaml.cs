@@ -175,10 +175,19 @@ namespace BGDrilling
 
                 //TODO: Foreach i in sensors, compute calibration parameters and save them in the respective fields of the accelerometer objects
            
-                for (int i = 0; i < sensors.GetLength(0); i++)
+                //for (int i = 0; i < sensors.GetLength(0); i++)
                 {
-                    sensors[i].calibrate();//calibrate data and save them in the respective fields
-                
+                   
+                   decimal[] res= sensors[0].calibrate();//calibrate data and save them in the respective fields
+
+                    String[] lines = new string[res.GetLength(0)];
+                    for (int i = 0; i < res.GetLength(0); i++)
+                    {
+                        labelResults.Content += res[i].ToString() + "\n";
+                        lines[i] += res[i].ToString() + ", ";
+                    }
+
+                    System.IO.File.WriteAllLines(@"C:\Users\Gali\Desktop\writeLines.txt", lines);
                 }
 
             }
